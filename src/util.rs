@@ -1,7 +1,9 @@
+#[cfg(test)]
 pub fn approx_eq(a: f64, b: f64, eps: f64) -> bool {
     (a-b).abs() < eps
 }
 
+#[cfg(test)]
 pub fn assert_approx_eq(a: f64, b: f64, eps: f64) {
     dbg!((a, b));
     assert!(approx_eq(a, b, eps));

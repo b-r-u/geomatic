@@ -1,3 +1,4 @@
+use std::fmt;
 use std::marker::PhantomData;
 use crate::laea::LaeaParams;
 use crate::ellipsoid::{Ellipsoid, GRS1980};
@@ -69,6 +70,15 @@ pub struct Point<C: Crs> {
 impl<C: Crs> Point<C> {
     pub fn new(a: f64, b: f64) -> Self {
         Self { coords: (a, b), _phantom: PhantomData }
+    }
+}
+
+impl<C: Crs> fmt::Display for Point<C> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match C::SRID {
+            Some(srid) => write!(f, "Point({}, {}, srid={})", self.coords.0, self.coords.1, srid),
+            None => write!(f, "Point({}, {}, srid=unknown)", self.coords.0, self.coords.1),
+        }
     }
 }
 

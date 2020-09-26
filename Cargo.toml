@@ -10,6 +10,7 @@ description = """
 Projections, conversions of geospatial coordinates and related operations.
 """
 keywords = ["geospatial", "projections", "proj", "gis", "geography"]
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 
